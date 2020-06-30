@@ -1,4 +1,4 @@
-Следующие библиотеки были используются в нашей системе
+Следующие библиотеки используются в нашей системе
 
 1. В качестве ORM системы используется MongoDB.Entities (https://github.com/dj-nitehawk/MongoDB.Entities/wiki)
 2. Для управления пользователями и ролями используется AspNetCore.Identity.Mongo (https://github.com/matteofabbri/AspNetCore.Identity.Mongo)

@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="UserAddClaimError" xml:space="preserve">
-    <value>Error occured while adding claim to user</value>
-  </data>
-  <data name="UserAlreadyExist" xml:space="preserve">
-    <value>User already exist</value>
-  </data>
-  <data name="UserCreationError" xml:space="preserve">
-    <value>Error occured while creating a user</value>
-  </data>
   <data name="UserNotFound" xml:space="preserve">
-    <value>User {0} not found</value>
+    <value>{0} қолданушысы табылмады</value>
   </data>
   <data name="ValidationErrorOccured" xml:space="preserve">
-    <value>One or more validation failures have occurred</value>
+    <value>Тексеру кезінде бір немесе бірнеше қате табылды</value>
   </data>
 </root>

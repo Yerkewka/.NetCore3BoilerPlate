@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApi.Common.Extensions;
+using Infrastructure;
 
 namespace WebApi
 {
@@ -27,10 +29,16 @@ namespace WebApi
             services
                 .AddResources()
                 .AddApplication()
+                .AddInfrastructure()
                 .AddPersistence(Configuration);
 
             services.AddControllers();
             services.AddLocalization(opt => opt.ResourcesPath = "Resources");
+
+            services
+                .ConfigureCors()
+                .ConfigureHttpClients(Configuration)
+                .ConfigureSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,14 +61,19 @@ namespace WebApi
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            app.UseCustomExceptionHandler();
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
+
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }

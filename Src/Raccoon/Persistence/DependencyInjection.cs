@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 using MongoDB.Entities;
-using Domain.Entities.Auth;
+using Domain.Entities.Indentity;
 using AspNetCore.Identity.Mongo;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
