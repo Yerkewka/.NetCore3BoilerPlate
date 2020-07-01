@@ -33,7 +33,7 @@ namespace Application.Common.Behaviours
                 .ToList();
 
             if (failures.Any())
-                throw new ValidationException(_sharedResource["ValidationErrorOccured"], failures);
+                throw new Exceptions.ValidationException(_sharedResource["ValidationErrorOccured"], failures);
 
             return next();
         }
