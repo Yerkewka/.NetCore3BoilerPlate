@@ -10,6 +10,6 @@ namespace Domain.Entities.Indentity
         public DateTime DateOfExpiration { get; set; }
         public bool Used { get; set; }
         public bool Invalidated { get; set; }
-        public string UserId { get; set; }
+        public string Username { get; set; }
     }
 }

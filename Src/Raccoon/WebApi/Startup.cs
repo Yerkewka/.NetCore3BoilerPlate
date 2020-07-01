@@ -1,16 +1,16 @@
 using Resources;
 using Application;
 using Persistence;
+using Infrastructure;
 using System.Globalization;
-using Microsoft.AspNetCore.Http;
+using WebApi.Common.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
-using WebApi.Common.Extensions;
-using Infrastructure;
 
 namespace WebApi
 {
@@ -38,11 +38,13 @@ namespace WebApi
             services
                 .ConfigureCors()
                 .ConfigureHttpClients(Configuration)
+                .ConfigureAuth(Configuration)
+                .ConfigureVersioning()
                 .ConfigureSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -63,8 +65,14 @@ namespace WebApi
 
             app.UseCustomExceptionHandler();
 
-            app.UseOpenApi();
-            app.UseSwaggerUi3();
+            app.UseSwagger();
+            app.UseSwaggerUI(opt => 
+            {
+                foreach(var description in provider.ApiVersionDescriptions)
+                {
+                    opt.SwaggerEndpoint($"{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                }
+            });
 
             app.UseRouting();
 

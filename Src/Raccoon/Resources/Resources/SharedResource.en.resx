@@ -117,11 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InternalServerError" xml:space="preserve">
+    <value>Internal server error</value>
+  </data>
+  <data name="InvalidCode" xml:space="preserve">
+    <value>Invalid code</value>
+  </data>
+  <data name="InvalidCredentials" xml:space="preserve">
+    <value>Invalid credentials</value>
+  </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>Invalid token</value>
+  </data>
+  <data name="RefreshTokenDoesNotExist" xml:space="preserve">
+    <value>This refresh token does not exist</value>
+  </data>
+  <data name="RefreshTokenDoesNotMatch" xml:space="preserve">
+    <value>Token does not match this JWT</value>
+  </data>
+  <data name="SaveEntityError" xml:space="preserve">
+    <value>Couln't save entity to database</value>
+  </data>
+  <data name="SmsSendError" xml:space="preserve">
+    <value>Couldn't send sms</value>
+  </data>
+  <data name="TokenExpired" xml:space="preserve">
+    <value>Token has expired</value>
+  </data>
+  <data name="TokenNotExpiredYetError" xml:space="preserve">
+    <value>Token not exprired yet</value>
+  </data>
+  <data name="TokenUsed" xml:space="preserve">
+    <value>Token has been used</value>
+  </data>
   <data name="UserAddClaimError" xml:space="preserve">
     <value>Error occured while adding claim to user</value>
-  </data>
-  <data name="UserAlreadyExist" xml:space="preserve">
-    <value>User already exist</value>
   </data>
   <data name="UserCreationError" xml:space="preserve">
     <value>Error occured while creating a user</value>

@@ -49,7 +49,7 @@ namespace Persistence.Base
 
         public List<TEntity> Find(Expression<Func<TEntity, bool>> condition)
         {
-            return FindAsync(condition).GetAwaiter().GetResult();
+            return FindAsync<TEntity>(condition, null).GetAwaiter().GetResult();
         }
 
         public async Task<List<TResult>> FindAsync<TResult>(Expression<Func<TEntity, bool>> condition, Expression<Func<TEntity, TResult>> projection = null)
@@ -66,7 +66,7 @@ namespace Persistence.Base
 
         public async Task<TEntity> FindAsync(string id)
         {
-            return (await FindAsync(x => x.ID == id)).SingleOrDefault();
+            return (await FindAsync<TEntity>(x => x.ID == id, null)).SingleOrDefault();
         }
 
         public async Task<TResult> FindAsync<TResult>(string id, Expression<Func<TEntity, TResult>> projection)
@@ -76,7 +76,7 @@ namespace Persistence.Base
 
         public async Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> condition = null)
         {
-            return await FindAsync(condition);
+            return await FindAsync<TEntity>(condition, null);
         }
 
         public string Save(TEntity entity)

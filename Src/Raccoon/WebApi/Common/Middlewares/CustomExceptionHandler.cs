@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Domain.Models.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -38,24 +39,24 @@ namespace WebApi.Common.Middlewares
             {
                 case ValidationException validationException:
                     code = HttpStatusCode.BadRequest;
-                    result = JsonConvert.SerializeObject(new
+                    result = JsonConvert.SerializeObject(new ErrorResponse
                     {
-                        message = validationException.Message,
-                        errors = validationException.Failures
+                        Message = validationException.Message,
+                        Errors = validationException.Failures
                     });
                     break;
                 case RestException restException:
                     code = restException.Code;
-                    result = JsonConvert.SerializeObject(new
+                    result = JsonConvert.SerializeObject(new ErrorResponse
                     {
-                        message = restException.Message
+                        Message = restException.Message
                     });
                     break;
                 default:
                     logger.LogError(exception, "Unhandled exception occured");
-                    result = JsonConvert.SerializeObject(new
+                    result = JsonConvert.SerializeObject(new ErrorResponse
                     {
-                        message = exception.Message
+                        Message = exception.Message
                     });
                     break;
             }

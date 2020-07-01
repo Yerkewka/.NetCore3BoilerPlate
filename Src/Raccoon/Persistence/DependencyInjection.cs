@@ -4,6 +4,8 @@ using Domain.Entities.Indentity;
 using AspNetCore.Identity.Mongo;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Application.Common.Interfaces.Repositories;
+using Persistence.Base;
 
 namespace Persistence
 {
@@ -20,6 +22,8 @@ namespace Persistence
             {
                 mongo.ConnectionString = connectionString;
             });
+
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
             return services;
         }

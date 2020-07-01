@@ -1,4 +1,4 @@
-﻿namespace WebApi.Controllers.V1
+﻿namespace WebApi.Controllers.V2
 {
     public static class ApiRoutes
     {
