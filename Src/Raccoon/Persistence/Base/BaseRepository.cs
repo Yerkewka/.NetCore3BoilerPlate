@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Collections.Generic;
 using Application.Common.Extensions;
 using Application.Common.Interfaces.Repositories;
+using Domain.Enums.System;
 
 namespace Persistence.Base
 {
@@ -32,9 +33,15 @@ namespace Persistence.Base
             await entity.DeleteAsync();
         }
 
-        public List<TResult> Find<TResult>(Expression<Func<TEntity, bool>> condition, Expression<Func<TEntity, TResult>> projection = null)
+        public List<TResult> Find<TResult>(
+            Expression<Func<TEntity, bool>> condition, 
+            Expression<Func<TEntity, TResult>> projection = null,
+            Expression<Func<TEntity, object>> sortBy = null,
+            Sort sortOrder = Sort.None,
+            int skip = 0,
+            int take = 0)
         {
-            return FindAsync(condition, projection).GetAwaiter().GetResult();
+            return FindAsync(condition, projection, sortBy, sortOrder, skip, take).GetAwaiter().GetResult();
         }
 
         public TEntity Find(string id)
@@ -52,7 +59,13 @@ namespace Persistence.Base
             return FindAsync<TEntity>(condition, null).GetAwaiter().GetResult();
         }
 
-        public async Task<List<TResult>> FindAsync<TResult>(Expression<Func<TEntity, bool>> condition, Expression<Func<TEntity, TResult>> projection = null)
+        public async Task<List<TResult>> FindAsync<TResult>(
+            Expression<Func<TEntity, bool>> condition, 
+            Expression<Func<TEntity, TResult>> projection = null,
+            Expression<Func<TEntity, object>> sortBy = null,
+            Sort sortOrder = Sort.None,
+            int skip = 0,
+            int take = 0)
         {
             var cmd = condition != null 
                 ? DB.GetInstance(typeof(TEntity).GetAttributeValue((DatabaseAttribute dbAttr) => dbAttr.Name)).Find<TEntity, TResult>().Match(condition) 
@@ -60,6 +73,19 @@ namespace Persistence.Base
             
             if (projection != null)
                 cmd.Project(projection);
+
+            if (sortOrder != Sort.None && sortBy != null)
+                cmd = cmd.Sort(
+                    sortBy,
+                    sortOrder == Sort.Ascending
+                    ? Order.Ascending
+                    : Order.Descending);
+
+            if (skip > 0)
+                cmd.Skip(skip);
+
+            if (take > 0)
+                cmd.Limit(take);
 
             return await cmd.ExecuteAsync();
         }

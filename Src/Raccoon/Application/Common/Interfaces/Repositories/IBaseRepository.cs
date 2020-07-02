@@ -3,14 +3,27 @@ using Domain.Base;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Domain.Enums.System;
 
 namespace Application.Common.Interfaces.Repositories
 {
     public interface IBaseRepository<TEntity> where TEntity : EntityBase
     {
-        Task<List<TResult>> FindAsync<TResult>(Expression<Func<TEntity, bool>> condition, Expression<Func<TEntity, TResult>> projection = null);
+        Task<List<TResult>> FindAsync<TResult>(
+            Expression<Func<TEntity, bool>> condition, 
+            Expression<Func<TEntity, TResult>> projection = null,
+            Expression<Func<TEntity, object>> sortBy = null,
+            Sort sortOrder = Sort.None,
+            int skip = 0,
+            int take = 0);
 
-        List<TResult> Find<TResult>(Expression<Func<TEntity, bool>> condition, Expression<Func<TEntity, TResult>> projection = null);
+        List<TResult> Find<TResult>(
+            Expression<Func<TEntity, bool>> condition, 
+            Expression<Func<TEntity, TResult>> projection = null,
+            Expression<Func<TEntity, object>> sortBy = null,
+            Sort sortOrder = Sort.None,
+            int skip = 0,
+            int take = 0);
 
         TEntity Find(string id);
 
