@@ -1,8 +1,10 @@
-﻿using Domain.Base;
-using System;
+﻿using System;
+using Domain.Base;
+using MongoDB.Entities;
 
 namespace Domain.Entities.Indentity
 {
+    [Name("RefreshTokens")]
     public class RefreshToken : EntityBase
     {
         public string Token { get; set; }

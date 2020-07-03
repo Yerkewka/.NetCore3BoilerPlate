@@ -5,8 +5,8 @@ using FluentValidation;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
-using Application.Common.Interfaces.Services;
 using Domain.Models.Configuration;
+using Application.Common.Interfaces.Services.Indentity;
 
 namespace Application.V1.Users
 {

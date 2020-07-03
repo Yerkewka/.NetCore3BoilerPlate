@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
-using Application.Common.Interfaces.Services;
+using Application.Common.Interfaces.Services.Indentity;
 
-namespace Infrastructure.Services.UserAccessor
+namespace Infrastructure.Services.Indentity
 {
     public class UserAccessor : IUserAccessor
     {

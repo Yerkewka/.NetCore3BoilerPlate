@@ -1,18 +1,18 @@
-﻿using Application.Common.Interfaces.Services;
-using Infrastructure.Services.Indentity;
-using Infrastructure.Services.Sms;
-using Infrastructure.Services.UserAccessor;
+﻿using Infrastructure.Extensions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<ISmsService, SmsService>();
-            services.AddScoped<IUserAccessor, UserAccessor>();
-            services.AddScoped<IIdentityService, IdentityService>();
+            services
+                .AddUserAccessor()
+                .AddIdentityService()
+                .AddSmsService()
+                .AddResponseCacheService(configuration);
 
             return services;
         }

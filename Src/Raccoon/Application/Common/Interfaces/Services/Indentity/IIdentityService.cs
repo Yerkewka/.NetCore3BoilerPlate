@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Common.Interfaces.Services
+namespace Application.Common.Interfaces.Services.Indentity
 {
     public interface IIdentityService
     {

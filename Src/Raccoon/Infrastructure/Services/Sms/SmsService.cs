@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Common.Interfaces.Services;
+using Application.Common.Interfaces.Services.Notification;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 

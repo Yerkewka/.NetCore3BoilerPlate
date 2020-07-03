@@ -12,5 +12,10 @@
             public const string Login = Base + "/users/login";
             public const string RefreshToken = Base + "/users/refresh";
         }
+
+        public static class Tests
+        {
+            public const string Get = Base + "/tests";
+        }
     }
 }

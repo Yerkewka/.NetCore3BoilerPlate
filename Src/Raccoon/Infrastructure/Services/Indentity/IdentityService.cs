@@ -6,7 +6,6 @@ using Domain.Models.Indentity;
 using Domain.Entities.Indentity;
 using Microsoft.AspNetCore.Identity;
 using Application.Common.Exceptions;
-using Application.Common.Interfaces.Services;
 using Microsoft.Extensions.Localization;
 using Resources;
 using System.Security.Claims;
@@ -19,6 +18,8 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.IdentityModel.Tokens;
 using Application.Common.Interfaces.Repositories;
+using Application.Common.Interfaces.Services.Indentity;
+using Application.Common.Interfaces.Services.Notification;
 
 namespace Infrastructure.Services.Indentity
 {

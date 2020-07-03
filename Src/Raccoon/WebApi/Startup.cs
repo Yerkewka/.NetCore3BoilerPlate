@@ -29,8 +29,8 @@ namespace WebApi
             services
                 .AddResources()
                 .AddApplication()
-                .AddInfrastructure()
-                .AddPersistence(Configuration);
+                .AddPersistence(Configuration)
+                .AddInfrastructure(Configuration);
 
             services.AddControllers();
             services.AddLocalization(opt => opt.ResourcesPath = "Resources");

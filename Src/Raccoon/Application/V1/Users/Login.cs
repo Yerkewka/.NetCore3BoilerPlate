@@ -1,5 +1,5 @@
 ﻿using Application.Common.Extensions;
-using Application.Common.Interfaces.Services;
+using Application.Common.Interfaces.Services.Indentity;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Localization;
